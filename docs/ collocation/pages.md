@@ -200,19 +200,26 @@
 - 非H5端，手机顶部状态栏区域会被页面内容覆盖。这是因为窗体是沉浸式的原因，即全屏可写内容。uni-app提供了状态栏高度的css变量[--status-bar-height](/frame?id=css%e5%8f%98%e9%87%8f)，如果需要把状态栏的位置从前景部分让出来，可写一个占位div，高度设为css变量。
 ```html
 <template>
-    <view>
-        <view class="status_bar">
-            <!-- 这里是状态栏 -->
-        </view>
-        <view> 状态栏下的文字 </view>
-    </view>
-</template>    
+	<view class="content">
+		<view class="status_bar">
+			<!-- 这里是状态栏 -->
+		</view>
+		<view> 状态栏下的文字 </view>
+	</view>
+</template>
 <style>
-    .status_bar {
-        height: var(--status-bar-height);
-        width: 100%;
-    }
+	.status_bar {
+		height: var(--status-bar-height);
+		background: #8A6DE9;
+		width: 100%;
+	}
+	.content{
+		height: 100%;
+		width: 100%;
+		flex-direction: column;
+	}
 </style>
+
 ```
 - 如果原生导航栏不能满足需求，推荐使用uni ui的[自定义导航栏NavBar](https://ext.dcloud.net.cn/plugin?id=52)。这个前端导航栏自动处理了状态栏高度占位问题。
 - 前端导航栏搭配原生下拉刷新时，会有问题，包括
